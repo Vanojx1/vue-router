@@ -1,6 +1,6 @@
 {
   "name": "vue-router",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "description": "Official router for Vue.js 2",
   "author": "Evan You",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuejs/vue-router.git"
+    "url": "https://github.com/vanojx1/vue-router.git"
   },
   "typings": "types/index.d.ts",
   "files": [
@@ -109,7 +109,7 @@
     "yorkie": "^2.0.0"
   },
   "bugs": {
-    "url": "https://github.com/vuejs/vue-router/issues"
+    "url": "https://github.com/vanojx1/vue-router/issues"
   },
-  "homepage": "https://github.com/vuejs/vue-router#readme"
+  "homepage": "https://github.com/vanojx1/vue-router#readme"
 }

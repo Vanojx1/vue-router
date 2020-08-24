@@ -1,11 +1,21 @@
 import { warn } from '../util/warn'
 import { extend } from '../util/misc'
 
+import Vue from 'vue'
+
 export default {
   name: 'RouterView',
   functional: true,
   props: {
     name: {
+      type: String,
+      default: 'default'
+    },
+    standalone: {
+      type: Object,
+      default: () => null
+    },
+    routerName: {
       type: String,
       default: 'default'
     }
@@ -14,11 +24,25 @@ export default {
     // used by devtools to display a router-view badge
     data.routerView = true
 
+    let fakeApp = null
+    let standaloneRouter = null
+    if (props.standalone) {
+      if (!parent.$root._extraRouters) parent.$root._extraRouters = {}
+      if (!parent.$root._extraRouters[props.routerName]) {
+        standaloneRouter = parent.$root._extraRouters[props.routerName] = props.standalone
+        fakeApp = new Vue({ router: standaloneRouter })
+        fakeApp.$router.replace('/')
+      } else {
+        standaloneRouter = parent.$root._extraRouters[props.routerName]
+        fakeApp = parent.$root._extraRouters[props.routerName].app
+      }
+    }
+
     // directly use parent context's createElement() function
     // so that components rendered by router-view can resolve named slots
     const h = parent.$createElement
     const name = props.name
-    const route = parent.$route
+    const route = standaloneRouter ? fakeApp.$route : parent.$route
     const cache = parent._routerViewCache || (parent._routerViewCache = {})
 
     // determine current view depth, also check to see if the tree

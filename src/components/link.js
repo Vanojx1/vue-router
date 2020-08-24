@@ -34,11 +34,15 @@ export default {
     event: {
       type: eventTypes,
       default: 'click'
+    },
+    routerName: {
+      type: String,
+      default: null
     }
   },
   render (h: Function) {
-    const router = this.$router
-    const current = this.$route
+    const router = this.routerName ? this.$root._extraRouters[this.routerName] : this.$router
+    const current = this.routerName ? this.$root._extraRouters[this.routerName].app.$route : this.$route
     const { location, route, href } = router.resolve(
       this.to,
       current,
