@@ -23,6 +23,7 @@ export function install (Vue) {
       if (isDef(this.$options.router)) {
         this._routerRoot = this
         this._router = this.$options.router
+        this._extraRouters = {}
         this._router.init(this)
         Vue.util.defineReactive(this, '_route', this._router.history.current)
       } else {
@@ -41,6 +42,10 @@ export function install (Vue) {
 
   Object.defineProperty(Vue.prototype, '$route', {
     get () { return this._routerRoot._route }
+  })
+
+  Object.defineProperty(Vue.prototype, '$extraRouters', {
+    get () { return this._routerRoot._extraRouters }
   })
 
   Vue.component('RouterView', View)

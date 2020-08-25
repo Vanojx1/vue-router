@@ -8,14 +8,14 @@ const Bar = {
   template: `
     <div class="bar">
       <h1>bar</h1>
-      <router-link standalone router-name="test-extra" to="/buz">TOBUZ</router-link>
+      <router-link standalone router-name="testRouter" to="/buz">TOBUZ</router-link>
     </div>`
 }
 const Buz = {
   template: `
     <div class="buz">
       <h1>buz</h1>
-      <router-link standalone router-name="test-extra" to="/">TOBAR</router-link>
+      <router-link standalone router-name="testRouter" to="/">TOBAR</router-link>
     </div>`
 }
 
@@ -27,7 +27,7 @@ const router = new VueRouter({
   ]
 })
 
-const standaloneRouter = new VueRouter({
+const testRouter = new VueRouter({
   mode: 'abstract',
   base: __dirname,
   routes: [
@@ -41,8 +41,8 @@ new Vue({
   template: `
     <div id="app">
       <router-view />
-      <router-view :standalone="$options.standaloneRouter" router-name="test-extra" />
+      <router-view :standalone="$options.testRouter" router-name="testRouter" />
     </div>
   `,
-  standaloneRouter
+  testRouter
 }).$mount('#app')

@@ -2,7 +2,7 @@
   "name": "vue-router",
   "version": "3.4.4",
   "description": "Official router for Vue.js 2",
-  "author": "Evan You",
+  "author": "Vanojx1",
   "license": "MIT",
   "main": "dist/vue-router.common.js",
   "module": "dist/vue-router.esm.js",

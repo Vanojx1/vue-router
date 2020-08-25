@@ -1,8 +1,6 @@
 import { warn } from '../util/warn'
 import { extend } from '../util/misc'
 
-import Vue from 'vue'
-
 export default {
   name: 'RouterView',
   functional: true,
@@ -27,14 +25,14 @@ export default {
     let fakeApp = null
     let standaloneRouter = null
     if (props.standalone) {
-      if (!parent.$root._extraRouters) parent.$root._extraRouters = {}
-      if (!parent.$root._extraRouters[props.routerName]) {
-        standaloneRouter = parent.$root._extraRouters[props.routerName] = props.standalone
-        fakeApp = new Vue({ router: standaloneRouter })
+      if (!parent.$extraRouters[props.routerName]) {
+        const VueC = require('vue').default
+        standaloneRouter = parent.$extraRouters[props.routerName] = props.standalone
+        fakeApp = new VueC({ router: standaloneRouter })
         fakeApp.$router.replace('/')
       } else {
-        standaloneRouter = parent.$root._extraRouters[props.routerName]
-        fakeApp = parent.$root._extraRouters[props.routerName].app
+        standaloneRouter = parent.$extraRouters[props.routerName]
+        fakeApp = parent.$extraRouters[props.routerName].app
       }
     }
 
