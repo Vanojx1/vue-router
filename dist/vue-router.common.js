@@ -57,7 +57,7 @@ var View = {
     if (props.standalone) {
       if (!parent.$extraRouters[props.routerName]) {
         var VueC = require('vue').default;
-        standaloneRouter = parent.$extraRouters[props.routerName] = props.standalone;
+        standaloneRouter = parent.$set(parent.$extraRouters, props.routerName, props.standalone);
         fakeApp = new VueC({ router: standaloneRouter });
         fakeApp.$router.replace('/');
       } else {
@@ -1265,7 +1265,7 @@ function install (Vue) {
       if (isDef(this.$options.router)) {
         this._routerRoot = this;
         this._router = this.$options.router;
-        this._extraRouters = {};
+        Vue.util.defineReactive(this, '_extraRouters', {});
         this._router.init(this);
         Vue.util.defineReactive(this, '_route', this._router.history.current);
       } else {

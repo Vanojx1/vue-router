@@ -23,7 +23,7 @@ export function install (Vue) {
       if (isDef(this.$options.router)) {
         this._routerRoot = this
         this._router = this.$options.router
-        this._extraRouters = {}
+        Vue.util.defineReactive(this, '_extraRouters', {})
         this._router.init(this)
         Vue.util.defineReactive(this, '_route', this._router.history.current)
       } else {

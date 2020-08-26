@@ -27,7 +27,7 @@ export default {
     if (props.standalone) {
       if (!parent.$extraRouters[props.routerName]) {
         const VueC = require('vue').default
-        standaloneRouter = parent.$extraRouters[props.routerName] = props.standalone
+        standaloneRouter = parent.$set(parent.$extraRouters, props.routerName, props.standalone)
         fakeApp = new VueC({ router: standaloneRouter })
         fakeApp.$router.replace('/')
       } else {
